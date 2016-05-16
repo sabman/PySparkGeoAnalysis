@@ -1,0 +1,6 @@
+data/*
+work-flow/*
+metastore_db/*
+code/*
+.ipynb_checkpoints/
+derby.log
