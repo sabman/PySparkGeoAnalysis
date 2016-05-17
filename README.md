@@ -21,7 +21,6 @@ This workshop will introduce you to Apache Spark via the exciting domain of Geos
 
 ### Dependencies:
 
-* Anaconda
 * Jupyter
 * Jupyter Notebook Extensions via `pip install https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip --user`
 * Apache Spark 1.6.1
@@ -36,6 +35,7 @@ sudo apt-get install -y --force-yes libgdal-dev
 
 sudo pip install geopandas
 sudo pip install overpy
+sudo pip install retrying
 ```
 
 ## Exercies
