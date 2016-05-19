@@ -8,7 +8,7 @@ USER root
 # Here are some informations how-to change the 'conda' environment
 # https://hub.docker.com/r/pdonorio/py3dataconda/~/dockerfile
 
-# Force bash always 
+# Force bash always
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Setup python 2.7 as default environment
@@ -43,12 +43,12 @@ RUN conda install gdal -y
 
 # Get custom GEO libs
 RUN curl -k -o /usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar https://dl.dropboxusercontent.com/u/96303065/spark-workshop/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar \
-    curl -o /usr/local/lib/jts-1.13.jar http://central.maven.org/maven2/com/vividsolutions/jts/1.13/jts-1.13.jar
+RUN curl -o /usr/local/lib/jts-1.13.jar http://central.maven.org/maven2/com/vividsolutions/jts/1.13/jts-1.13.jar
 
 # Add GEO libs to spark class path
 ENV SPARK_CLASSPATH="/usr/local/lib/jts-1.13.jar:/usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar"
 
-# Download the latest notebook and GEO data 
+# Download the latest notebook and GEO data
 RUN mkdir -p /home/jovyan/work/work-flow \
     && curl -o /home/jovyan/work/work-flow/06_Europe_Cities_Boundries_with_Labels_Population.geo.json http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json \
     && curl -o /home/jovyan/work/work-flow/pois.json http://datax.academy/pydata-berlin-2016/pois.json \
