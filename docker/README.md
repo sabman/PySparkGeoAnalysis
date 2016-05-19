@@ -13,6 +13,8 @@ Run the workshop environment directly
 docker run -it -p 8888:8888 sabman/pydata-berlin-2016-geo-with-pyspark
 ```
 
+OR
+
 Enter and run the workshop environment from bash
 ```sh
 docker run -it -p 8888:8888 sabman/pydata-berlin-2016-geo-with-pyspark bash
