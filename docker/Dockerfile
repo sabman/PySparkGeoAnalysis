@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
 RUN $CONDA_ACTIVATE && pip install overpy --upgrade
 RUN $CONDA_ACTIVATE && pip install retrying --upgrade
 RUN $CONDA_ACTIVATE && pip install geopandas --upgrade
+RUN $CONDA_ACTIVATE && pip install https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip --user
 
 # Install conda packages
 RUN conda install libgfortran -y
