@@ -20,7 +20,7 @@ jupyter notebook --ip=*
 ```
 
 ## Jupyter environment
-Acess Jupyter workshop environment via your browser
+Access Jupyter workshop environment via your browser
 ```sh
 http://<docker ip>:8888
 ```
