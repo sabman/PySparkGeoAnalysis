@@ -3,6 +3,9 @@
 ## Shoaib Burq
 ### @sabman
 
+^ Thank everyone for coming
+^ Introduce myself
+
 ---
 
 ## About me
@@ -13,11 +16,15 @@ Shoaib Burq (twitter: @sabman)
 * :whale: Underwater mapping & ...
 * :fire: Disaster Response work for Australian Gov.
 * :airplane:: Moved to Berlin 2011
-* :sweat: Startup with some awesome people
+* :sweat: Startup with some awesome people (dataX)
 
 ---
 
-## Team
+# [fit] :school: datax.academy
+
+---
+
+## Team dataX
 
 * Stafan Berntheisel (big data engineer)
 * Dr Kashif Rasul (deep learning)
@@ -34,6 +41,14 @@ Shoaib Burq (twitter: @sabman)
 
 * Download the docker image
 * docker up
+
+---
+
+# [fit] Big Picture :cloud:
+
+---
+
+![fit](images/sketch.png)
 
 ---
 
