@@ -52,11 +52,21 @@ Shoaib Burq (twitter: @sabman)
 
 ---
 
+# [fit] Our Data
+
+## lets explore...
+
+---
+
 # [fit] :globe_with_meridians: + :panda_face: = GeoPandas
 
 ## http://geopandas.org
 
+^ GeoPandas is an open source project to make working with geospatial data in python easier. GeoPandas extends the datatypes used by pandas to allow spatial operations on geometric types. Geometric operations are performed by shapely. Geopandas further depends on fiona for file access and descartes and matplotlib for plotting.
+
+
 ---
+
 
 ## Make working with geographic data like working with other kinds of data in python
 
@@ -187,3 +197,20 @@ boros.buffer(0.5).plot()
 ```{python}
 boros.to_json()
 ```
+
+---
+
+## GeoPandas: lets explore...
+
+---
+# PySpark :snake: :sparkles:
+## internals
+
+---
+
+![fit](images/pyspark.png)
+
+
+^ Pickle with try to create a function closure and serialize it. In order for the JVM to communicate with Python/PySpark we need to able to pickle functions and take our data and translate it into bytes.
+
+---
