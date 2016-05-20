@@ -37,6 +37,11 @@ RUN $CONDA_ACTIVATE && pip install retrying --upgrade
 RUN $CONDA_ACTIVATE && pip install geopandas --upgrade
 RUN $CONDA_ACTIVATE && pip install https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip --user
 
+# Geovislization libraries
+RUN $CONDA_ACTIVATE && pip install folium --upgrade
+RUN $CONDA_ACTIVATE && pip install branca --upgrade
+RUN $CONDA_ACTIVATE && pip install vincent --upgrade
+
 # Install conda packages
 RUN conda install libgfortran -y
 RUN conda install fiona -y
