@@ -1,8 +1,13 @@
 # A Small Course on Big Data - GeoAnalysis using PySpark
 
-Download the `Dockerfile` to the buid image. Then proceed as below:
-`wget https://raw.githubusercontent.com/sabman/GeoAnalysis-of-Culture-in-European-Cities-Using-PySpark/master/docker/Dockerfile`
+Download the `Dockerfile` to the buid image:
 
+```
+wget https://raw.githubusercontent.com/sabman/GeoAnalysis-of-Culture-in-European-Cities-Using-PySpark/master/docker/Dockerfile
+```
+
+Then proceed as below:
+ 
 ## Docker build
 Build the docker image
 ```sh
