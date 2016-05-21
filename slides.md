@@ -155,7 +155,7 @@ BoroCode
 
 ![left fit](images/nyc.png)
 
-```{python}
+```python
 boros.plot()
 ```
 
@@ -165,7 +165,7 @@ boros.plot()
 
 ![left fit](images/nyc_hull.png)
 
-```{python}
+```python
 boros.convex_hull.plot()
 ```
 
@@ -175,7 +175,7 @@ boros.convex_hull.plot()
 
 ![left fit](images/nyc_buffer-5280.png)
 
-```{python}
+```python
 boros.buffer(0.5).plot()
 ```
 
@@ -211,6 +211,43 @@ boros.to_json()
 ![fit](images/pyspark.png)
 
 
+^PySpark is built on top of Spark's Java API. Data is processed in Python and cached / shuffled in the JVM. In the Python driver program, SparkContext uses Py4J to launch a JVM and create a JavaSparkContext. Py4J is only used on the driver for local communication between the Python and Java SparkContext objects; large data transfers are performed through a different mechanism. RDD transformations in Python are mapped to transformations on PythonRDD objects in Java. On remote worker machines, PythonRDD objects launch Python subprocesses and communicate with them using pipes, sending the user's code and the data to be processed.
+
+
 ^ Pickle with try to create a function closure and serialize it. In order for the JVM to communicate with Python/PySpark we need to able to pickle functions and take our data and translate it into bytes.
+
+---
+
+# SparkSQL / DataFrames
+
+---
+# Write less code
+
+
+```
+# RDD Version:
+data = sc.textFile(...).split("\t")
+data.map(lambda x: (x[0], [int(x[1]), 1])) \
+  .reduceByKey(lambda x, y: [x[0] + y[0], x[1] + y[1]]) \
+  .map(lambda x: [x[0], x[1][0] / x[1][1]]) \
+  .collect()
+
+# DataFrames Version:
+sqlCtx.table("people") \
+   .groupBy("name") \
+   .agg("name", avg("age")) \
+   .collect()
+```
+
+---
+
+![fit](images/dataframes-faster.png)
+
+---
+## Optimization happens as late as possible, therefore Spark SQL can optimize across functions :v:
+
+---
+
+![fit](images/dataframes.png)
 
 ---
