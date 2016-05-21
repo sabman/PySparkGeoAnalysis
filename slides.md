@@ -1,7 +1,7 @@
 # Workshop Geospatial Analysis with PySpark
 
-## Shoaib Burq
-### @sabman
+## Shoaib Burq & Kashif Rasul
+### @sabman / @krasul
 
 ^ Thank everyone for coming
 ^ Introduce myself
@@ -33,14 +33,32 @@ Shoaib Burq (twitter: @sabman)
 
 ---
 
+# :sparkles: & :globe_with_meridians:
+
+## What's happening in Spark and GeoAnalysis
+
+---
+
+# Current Options
+
+* Magellan `harsha2010/magellan`
+* GeoSpark `DataSystemsLab/GeoSpark`
+* SpatialSpark `syoummer/SpatialSpark`
+* Spark kNN Graphs `tdebatty/spark-knn-graphs`
+
+^
+
+---
+
 # [fit] Getting Setup :v:
 
 ---
 
-## Docker
+## Docker Setup
 
-* Download the docker image
-* docker up
+Follow instructions here:
+
+`https://github.com/sabman/PySparkGeoAnalysis/blob/master/docker/README.md`
 
 ---
 
@@ -251,3 +269,26 @@ sqlCtx.table("people") \
 ![fit](images/dataframes.png)
 
 ---
+
+
+# Shared Variables
+
+
+^ Normally, when a function passed to a Spark operation (such as map or reduce) is executed on a remote cluster node, it works on separate copies of all the variables used in the function. These variables are copied to each machine, and no updates to the variables on the remote machine are propagated back to the driver program. Supporting general, read-write shared variables across tasks would be inefficient. However, Spark does provide two limited types of shared variables for two common usage patterns: broadcast variables and accumulators.
+
+
+# Broadcast Variables
+
+```python
+>>> broadcastVar = sc.broadcast([1, 2, 3])
+<pyspark.broadcast.Broadcast object at 0x102789f10>
+
+>>> broadcastVar.value
+[1, 2, 3]
+```
+
+^Broadcast variables allow the programmer to keep a read-only variable cached on each machine rather than shipping a copy of it with tasks. They can be used, for example, to give every node a copy of a large input dataset in an efficient manner. Spark also attempts to distribute broadcast variables using efficient broadcast algorithms to reduce communication cost.
+
+^Spark actions are executed through a set of stages, separated by distributed “shuffle” operations. Spark automatically broadcasts the common data needed by tasks within each stage. The data broadcasted this way is cached in serialized form and deserialized before running each task. This means that explicitly creating broadcast variables is only useful when tasks across multiple stages need the same data or when caching the data in deserialized form is important.
+
+^Broadcast variables are created from a variable v by calling SparkContext.broadcast(v). The broadcast variable is a wrapper around v, and its value can be accessed by calling the value method. The code below shows this:
