@@ -22,3 +22,10 @@ This workshop will introduce you to Apache Spark via the exciting domain of Geos
 ### Dependencies:
 
 See: docker/README.md
+
+## Data
+
+If you use docker the data will automatically downloaded into the work-flow folder. Otherwise here's the data for download
+
+  wget http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json
+  wget http://datax.academy/pydata-berlin-2016/pois.json 
