@@ -53,6 +53,9 @@ Shoaib Burq (twitter: @sabman)
 # [fit] Getting Setup :v:
 
 ---
+## Wifi
+
+* Connect to `PySpark Workshop` / `workshop`
 
 ## Docker Setup
 
@@ -128,7 +131,7 @@ Work with existing tools:
 * Coordinate transformations (pyproj)
 * Read/write GIS file formats (Fiona)
 * Create a GeoDataFrame from PostGIS table
-* Output any object as geoJSON
+* Output any object as GeoJSON
 * Plotting
 
 ---
@@ -219,6 +222,20 @@ boros.to_json()
 ---
 
 ## GeoPandas: lets explore...
+
+
+---
+# What is Apache Spark
+## The big picture
+
+^ Apache Spark is an in memory data processing and analysis library that is made up of the following parts:
+
+---
+
+![fit](images/spark_stack.png)
+
+^ TODO: replace with omnigraffle diagram
+^ Spark core stack can be seen as
 
 ---
 # PySpark :snake: :sparkles:
