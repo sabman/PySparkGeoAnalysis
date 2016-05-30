@@ -29,5 +29,20 @@ If you use docker the data will automatically downloaded into the work-flow fold
 
 ```
 wget http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json
-wget http://datax.academy/pydata-berlin-2016/pois.json 
+wget http://datax.academy/pydata-berlin-2016/pois.json
 ```
+
+## Plan
+
+### Introduction to Apache Spark and PySpark
+
+* What is Apache Spark
+* Why is it revolutionary
+* How does it work?
+* What does it contain?
+
+### Workshop Scenario
+
+* Static Data Analysis
+* Machine Learning Applications of Geospatial
+* Real-Time Analysis
