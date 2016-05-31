@@ -7,18 +7,18 @@ wget https://raw.githubusercontent.com/sabman/PySparkGeoAnalysis/master/docker/D
 ```
 
 Then proceed as below:
- 
+
 ## Docker build
 Build the docker image
 ```sh
-docker build -t sabman/pydata-berlin-2016-geo-with-pyspark .
+docker build -t sabman/pydata-berlin-2016-geo-with-pyspark -f ./docker/Dockerfile .
 ```
 
 ## Docker run
 
 Run the workshop environment directly
 ```sh
-docker run -it -p 8888:8888 sabman/pydata-berlin-2016-geo-with-pyspark
+docker run -itd -p 8888:8888 sabman/pydata-berlin-2016-geo-with-pyspark jupyter notebook '--ip=*'
 ```
 
 OR

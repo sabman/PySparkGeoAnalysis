@@ -6,4 +6,7 @@ dependencies:
     - "~/docker"
   override:
     - docker info
-    - docker build -t sabman/pydata-berlin-2016-geo-with-pyspark -f ./docker/Dockerfile .
+    - docker build -t sabman/geo-with-pyspark -f ./docker/Dockerfile .
+test:
+  override:
+    - docker run -itd -p 8888:8888 sabman/pydata-berlin-2016-geo-with-pyspark jupyter notebook '--ip=*'
