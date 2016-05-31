@@ -9,4 +9,5 @@ dependencies:
     - docker build -t sabman/geo-with-pyspark -f ./docker/Dockerfile .
 test:
   override:
-    - docker run -itd -p 8888:8888 sabman/pydata-berlin-2016-geo-with-pyspark jupyter notebook '--ip=*'
+    - docker run -itd -p 8888:8888 sabman/geo-with-pyspark jupyter notebook '--ip=*'
+    - docker run sabman/geo-with-pyspark bats tests/unit/run.bats

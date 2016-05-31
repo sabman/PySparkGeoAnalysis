@@ -31,6 +31,9 @@ RUN apt-get update && apt-get install -y \
     libspatialite-dev \
     && apt-get clean
 
+# Install bats for automated testing
+RUN git clone https://github.com/sstephenson/bats.git && cd bats && ./install.sh /usr/local
+
 # Install / upgrade python libs
 RUN $CONDA_ACTIVATE && pip install overpy --upgrade
 RUN $CONDA_ACTIVATE && pip install retrying --upgrade
