@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/sabman/PySparkGeoAnalysis.svg?style=svg)](https://circleci.com/gh/sabman/PySparkGeoAnalysis)
+
 # A Small Course on Big Data - GeoAnalysis using PySpark
 
 ## House Keeping
