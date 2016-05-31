@@ -6,4 +6,4 @@ dependencies:
     - "~/docker"
   override:
     - docker info
-    - docker build -t sabman/pydata-berlin-2016-geo-with-pyspark .
+    - docker build -t sabman/pydata-berlin-2016-geo-with-pyspark -f ./docker/Dockerfile .
