@@ -3,7 +3,7 @@
 Download the `Dockerfile` to the buid image:
 
 ```
-wget https://raw.githubusercontent.com/sabman/GeoAnalysis-of-Culture-in-European-Cities-Using-PySpark/master/docker/Dockerfile
+wget https://raw.githubusercontent.com/sabman/PySparkGeoAnalysis/master/docker/Dockerfile
 ```
 
 Then proceed as below:
