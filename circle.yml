@@ -1,3 +1,9 @@
 machine:
   services:
     - docker
+dependencies:
+  cache_directories:
+    - "~/docker"
+  override:
+    - docker info
+    - docker build -t sabman/pydata-berlin-2016-geo-with-pyspark .
