@@ -64,4 +64,4 @@ ENV SPARK_CLASSPATH="/usr/local/lib/jts-1.13.jar:/usr/local/lib/spatial-spark_2.
 RUN git clone https://github.com/sabman/PySparkGeoAnalysis.git work && \
     cd work && \
     curl -o /home/jovyan/work/work-flow/06_Europe_Cities_Boundries_with_Labels_Population.geo.json http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json && \
-    curl -o /home/jovyan/work/work-flow/pois.json http://datax.academy/pydata-berlin-2016/pois.json &&
+    curl -o /home/jovyan/work/work-flow/pois.json http://datax.academy/pydata-berlin-2016/pois.json
