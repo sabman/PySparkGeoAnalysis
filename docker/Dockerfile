@@ -32,7 +32,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # Install bats for automated testing
-RUN git clone https://github.com/sstephenson/bats.git && cd bats && ./install.sh /usr/local
+RUN git clone https://github.com/sstephenson/bats.git && \
+    cd bats && ./install.sh /usr/local && \
+    cd .. && rm -rf  ./bats
+
 
 # Install / upgrade python libs
 RUN $CONDA_ACTIVATE && pip install overpy --upgrade
@@ -57,8 +60,8 @@ RUN curl -o /usr/local/lib/jts-1.13.jar http://central.maven.org/maven2/com/vivi
 # Add GEO libs to spark class path
 ENV SPARK_CLASSPATH="/usr/local/lib/jts-1.13.jar:/usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar"
 
-# Download the latest notebook and GEO data
-RUN mkdir -p /home/jovyan/work/work-flow \
-    && curl -o /home/jovyan/work/work-flow/06_Europe_Cities_Boundries_with_Labels_Population.geo.json http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json \
-    && curl -o /home/jovyan/work/work-flow/pois.json http://datax.academy/pydata-berlin-2016/pois.json \
-    && curl -k -o /home/jovyan/work/Analysis.ipynb https://raw.githubusercontent.com/sabman/GeoAnalysis-of-Culture-in-European-Cities-Using-PySpark/master/Analysis.ipynb
+# Clone the latest notebook and GEO data
+RUN git clone https://github.com/sabman/PySparkGeoAnalysis.git work && \
+    cd work && \
+    curl -o /home/jovyan/work/work-flow/06_Europe_Cities_Boundries_with_Labels_Population.geo.json http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json && \
+    curl -o /home/jovyan/work/work-flow/pois.json http://datax.academy/pydata-berlin-2016/pois.json &&
