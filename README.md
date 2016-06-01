@@ -1,4 +1,6 @@
-Docker Image Test Status: [![CircleCI](https://circleci.com/gh/sabman/PySparkGeoAnalysis.svg?style=svg)](https://circleci.com/gh/sabman/PySparkGeoAnalysis)
+Docker Image Test Status: 
+
+[![CircleCI](https://circleci.com/gh/sabman/PySparkGeoAnalysis.svg?style=svg)](https://circleci.com/gh/sabman/PySparkGeoAnalysis)
 
 # A Small Course on Big Data - GeoAnalysis using PySpark
 
