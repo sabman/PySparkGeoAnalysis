@@ -63,12 +63,13 @@ RUN curl -o /usr/local/lib/jts-1.13.jar \
 ENV SPARK_CLASSPATH="/usr/local/lib/jts-1.13.jar:/usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar"
 
 # Clone the latest notebook and GEO data
-RUN git clone https://github.com/sabman/PySparkGeoAnalysis.git work
-RUN cd work
+RUN ls -a && git clone https://github.com/sabman/PySparkGeoAnalysis.git . && pwd && ls -la work-flow
 
 # Download the data
-RUN curl -o work-flow/06_Europe_Cities_Boundries_with_Labels_Population.geo.json \
-      http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json
+RUN curl -o ./06_Europe_Cities_Boundries_with_Labels_Population.geo.json \
+      http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json && \
+      mv 06_Europe_Cities_Boundries_with_Labels_Population.geo.json ./work-flow
 
-RUN curl -o work-flow/pois.json \
-      http://datax.academy/pydata-berlin-2016/pois.json
+RUN curl -o ./pois.json \
+      http://datax.academy/pydata-berlin-2016/pois.json && \
+      mv pois.json ./work-flow
