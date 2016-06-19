@@ -41,7 +41,7 @@ RUN git clone https://github.com/sstephenson/bats.git && \
 RUN $CONDA_ACTIVATE && pip install overpy --upgrade
 RUN $CONDA_ACTIVATE && pip install retrying --upgrade
 RUN $CONDA_ACTIVATE && pip install geopandas --upgrade
-# RUN $CONDA_ACTIVATE && pip install https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip --user
+RUN pip install https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip --user
 
 # Geovislization libraries
 RUN $CONDA_ACTIVATE && pip install folium --upgrade
@@ -55,10 +55,11 @@ RUN conda install gdal -y
 
 # Get custom GEO libs
 RUN curl -k -o /usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar \
-      https://dl.dropboxusercontent.com/u/96303065/spark-workshop/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar \
+      https://dl.dropboxusercontent.com/u/96303065/spark-workshop/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar
 
-RUN curl -o /usr/local/lib/jts-1.13.jar \
+RUN curl -k -o /usr/local/lib/jts-1.13.jar \
       http://central.maven.org/maven2/com/vividsolutions/jts/1.13/jts-1.13.jar
+
 
 # Add GEO libs to spark class path
 ENV SPARK_CLASSPATH="/usr/local/lib/jts-1.13.jar:/usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar"
