@@ -137,6 +137,15 @@ Shoaib Burq (twitter: @sabman)
 
 ^ Apache Spark is a fast and general-purpose cluster computing system. It provides high-level APIs in Java, Scala, Python and R, and an optimized engine that supports general execution graphs. It also supports a rich set of higher-level tools including Spark SQL for SQL and structured data processing, MLlib for machine learning, GraphX for graph processing, and Spark Streaming.
 
+^ Cluster manager	An external service for acquiring resources on the cluster (e.g. standalone manager, Mesos, YARN)
+
+^ Standalone – a simple cluster manager included with Spark that makes it easy to set up a cluster.
+^ Apache Mesos – a general cluster manager that can also run Hadoop MapReduce and service applications.
+^ Hadoop YARN – the resource manager in Hadoop 2.
+^ In addition, Spark’s EC2 launch scripts make it easy to launch a standalone cluster on Amazon EC2.
+
+
+
 
 
 ---
@@ -148,7 +157,7 @@ Shoaib Burq (twitter: @sabman)
 ![fit](images/pyspark.png)
 
 
-^PySpark is built on top of Spark's Java API. Data is processed in Python and cached / shuffled in the JVM. In the Python driver program, SparkContext uses Py4J to launch a JVM and create a JavaSparkContext. Py4J is only used on the driver for local communication between the Python and Java SparkContext objects; large data transfers are performed through a different mechanism. RDD transformations in Python are mapped to transformations on PythonRDD objects in Java. On remote worker machines, PythonRDD objects launch Python subprocesses and communicate with them using pipes, sending the user's code and the data to be processed.
+^ PySpark is built on top of Spark's Java API. Data is processed in Python and cached / shuffled in the JVM. In the Python driver program, SparkContext uses Py4J to launch a JVM and create a JavaSparkContext. Py4J is only used on the driver for local communication between the Python and Java SparkContext objects; large data transfers are performed through a different mechanism. RDD transformations in Python are mapped to transformations on PythonRDD objects in Java. On remote worker machines, PythonRDD objects launch Python subprocesses and communicate with them using pipes, sending the user's code and the data to be processed.
 
 
 ^ Pickle with try to create a function closure and serialize it. In order for the JVM to communicate with Python/PySpark we need to able to pickle functions and take our data and translate it into bytes.
