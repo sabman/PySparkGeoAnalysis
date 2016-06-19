@@ -3,7 +3,7 @@
 Download the `Dockerfile` to the buid image:
 
 ```
-wget https://raw.githubusercontent.com/sabman/PySparkGeoAnalysis/master/docker/Dockerfile
+git clone git@github.com:sabman/PySparkGeoAnalysis.git
 ```
 
 Then proceed as below:
