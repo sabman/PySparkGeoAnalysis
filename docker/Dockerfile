@@ -56,6 +56,7 @@ RUN conda install gdal -y
 # Get custom GEO libs
 RUN curl -k -o /usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar \
       https://dl.dropboxusercontent.com/u/96303065/spark-workshop/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar \
+
 RUN curl -o /usr/local/lib/jts-1.13.jar \
       http://central.maven.org/maven2/com/vividsolutions/jts/1.13/jts-1.13.jar
 
