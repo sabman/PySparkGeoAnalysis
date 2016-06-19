@@ -1,6 +1,6 @@
 # A Small Course on Big Data - GeoAnalysis using PySpark
 
-Download the `Dockerfile` to the buid image:
+Clone the repository and use the provided `Dockerfile` to the buid image:
 
 ```
 git clone git@github.com:sabman/PySparkGeoAnalysis.git
