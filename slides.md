@@ -7,6 +7,18 @@
 ^ Introduce myself
 
 ---
+# Agenda
+
+* Quick Introduction to Docker
+* Setup machines
+* What is Apache Spark/PySpark
+* Spark DataFrames
+* Spark and Geo Ecosystem
+* Overview of our use cases
+* GeoPandas Introduction
+* Hands-on Workshop
+
+---
 
 # [fit] Getting Setup :v:
 
@@ -109,9 +121,8 @@ Shoaib Burq (twitter: @sabman)
 * :whale: Underwater mapping & ...
 * :fire: Disaster Response work for Australian Gov.
 * :airplane:: Moved to Berlin 2011
-* :sweat: Startup with some awesome people (dataX)
 
----
+<!-- ---
 
 # [fit] :school: datax.academy
 
@@ -122,7 +133,7 @@ Shoaib Burq (twitter: @sabman)
 * Stafan Berntheisel (big data engineer)
 * Dr Kashif Rasul (deep learning)
 * Sergey Vandyshev (machine learning)
-* Leo Marose (business/analyst)
+* Leo Marose (business/analyst) -->
 
 
 ---
@@ -146,8 +157,6 @@ Shoaib Burq (twitter: @sabman)
 
 
 
-
-
 ---
 # PySpark :snake: :sparkles:
 ## internals
@@ -163,28 +172,53 @@ Shoaib Burq (twitter: @sabman)
 ^ Pickle with try to create a function closure and serialize it. In order for the JVM to communicate with Python/PySpark we need to able to pickle functions and take our data and translate it into bytes.
 
 ---
+# Resilient Distributed Datasets (RDDs)
 
-# SparkSQL / DataFrames
+```python
+data = [1, 2, 3, 4, 5]
+distData = sc.parallelize(data, 10)
+distData.reduce(lambda a, b: a + b)
+```
+
+^Spark revolves around the concept of a resilient distributed dataset (RDD), which is a fault-tolerant collection of elements that can be operated on in parallel. There are two ways to create RDDs: parallelizing an existing collection in your driver program, or referencing a dataset in an external storage system, such as a shared filesystem, HDFS, HBase, or any data source offering a Hadoop InputFormat.
+
+^ Once created, the distributed dataset (distData) can be operated on in parallel. For example, we can call distData.reduce(lambda a, b: a + b) to add up the elements of the list. We describe operations on distributed datasets later on.
+
+^ One important parameter for parallel collections is the number of partitions to cut the dataset into. Spark will run one task for each partition of the cluster. Typically you want 2-4 partitions for each CPU in your cluster. Normally, Spark tries to set the number of partitions automatically based on your cluster. However, you can also set it manually by passing it as a second parameter to parallelize (e.g. sc.parallelize(data, 10)). Note: some places in the code use the term slices (a synonym for partitions) to maintain backward compatibility.
+
 
 ---
-# Write less code
+# Map / Reduce - Calculate Average Age
 
+```
+cat data.txt
+bob 24
+jane 19
+jimmy 36
+tim 45
+```
 
 ```
 # RDD Version:
-data = sc.textFile(...).split("\t")
+data = sc.textFile("data.txt").split("\t")
 data.map(lambda x: (x[0], [int(x[1]), 1])) \
   .reduceByKey(lambda x, y: [x[0] + y[0], x[1] + y[1]]) \
   .map(lambda x: [x[0], x[1][0] / x[1][1]]) \
   .collect()
+```
+
+^ now I know what you are thinking this is horrible.. Preicly why we need DataFrames
+
+---
 
 # DataFrames Version:
+
+```
 sqlCtx.table("people") \
    .groupBy("name") \
    .agg("name", avg("age")) \
    .collect()
 ```
-
 ---
 
 ![fit](images/dataframes-faster.png)
@@ -198,6 +232,96 @@ sqlCtx.table("people") \
 
 ---
 
+# Creating DataFrame
+
+```python
+from pyspark.sql import SQLContext
+sqlContext = SQLContext(sc)
+df = sqlContext.read.json("examples/src/main/resources/people.json")
+
+
+df.show()
+## age  name
+## null Michael
+```
+^ The entry point into all functionality in Spark SQL is the SQLContext class, or one of its descendants. To create a basic SQLContext, all you need is a SparkContext.
+
+---
+```python
+# Print the schema in a tree format
+df.printSchema()
+## root
+## |-- age: long (nullable = true)
+## |-- name: string (nullable = true)
+
+# Select only the "name" column
+df.select("name").show()
+## name
+## Michael
+## Andy
+## Justin
+
+```
+---
+
+```python
+# Select everybody, but increment the age by 1
+df.select(df['name'], df['age'] + 1).show()
+## name    (age + 1)
+## Michael null
+## Andy    31
+## Justin  20
+
+# Select people older than 21
+df.filter(df['age'] > 21).show()
+## age name
+## 30  Andy
+```
+
+---
+
+```python
+# Count people by age
+df.groupBy("age").count().show()
+## age  count
+## null 1
+## 19   1
+## 30   1
+
+```
+---
+# Running SQL Queries Programmatically
+
+```python
+from pyspark.sql import SQLContext
+sqlContext = SQLContext(sc)
+df = sqlContext.sql("SELECT * FROM table")
+```
+
+^ What if you are familiar with SQL?
+^ The sql function on a SQLContext enables applications to run SQL queries programmatically and returns the result as a DataFrame.
+
+
+---
+# Inferring the Schema Using Reflection
+
+```python
+# Load a text file and convert each line to a Row.
+lines = sc.textFile("examples/src/main/resources/people.txt")
+parts = lines.map(lambda l: l.split(","))
+people = parts.map(lambda p: Row(name=p[0], age=int(p[1])))
+
+# Infer the schema, and register the DataFrame as a table.
+schemaPeople = sqlContext.createDataFrame(people)
+schemaPeople.registerTempTable("people")
+
+# SQL can be run over DataFrames that have been registered as a table.
+teenagers = sqlContext.sql("SELECT name FROM people WHERE age >= 13 AND age <= 19")
+```
+
+^ Spark SQL can convert an RDD of Row objects to a DataFrame, inferring the datatypes. Rows are constructed by passing a list of key/value pairs as kwargs to the Row class. The keys of this list define the column names of the table, and the types are inferred by looking at the first row. Since we currently only look at the first row, it is important that there is no missing data in the first row of the RDD. In future versions we plan to more completely infer the schema by looking at more data, similar to the inference that is performed on JSON files.
+
+---
 
 # Shared Variables
 
@@ -221,9 +345,7 @@ sqlCtx.table("people") \
 
 ^Broadcast variables are created from a variable v by calling SparkContext.broadcast(v). The broadcast variable is a wrapper around v, and its value can be accessed by calling the value method. The code below shows this:
 
----
 
-# Running Spark on Clusters
 
 ---
 
@@ -234,9 +356,9 @@ sqlCtx.table("people") \
 ^ The driver program must listen for and accept incoming connections from its executors throughout its lifetime (e.g., see spark.driver.port and spark.fileserver.port in the network config section). As such, the driver program must be network addressable from the worker nodes.
 ^ Because the driver schedules tasks on the cluster, it should be run close to the worker nodes, preferably on the same local area network. If you’d like to send requests to the cluster remotely, it’s better to open an RPC to the driver and have it submit operations from nearby than to run a driver far away from the worker nodes.
 
----
 
-## Cluster Archtecture
+^ Cluster Architecture
+^ TODO: Running Spark on Clusters https://youtu.be/OkyRdKahMpk
 
 ---
 
