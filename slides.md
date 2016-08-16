@@ -9,14 +9,12 @@
 ---
 # Agenda
 
-* Quick Introduction to Docker
-* Setup machines
+* Quick Introduction to Docker / Setup machines
 * What is Apache Spark/PySpark
 * Spark DataFrames
-* Spark and Geo Ecosystem
+* Geo Ecosystem
 * Overview of our use cases
-* GeoPandas Introduction
-* Hands-on Workshop
+* GeoPandas & Hands-on Workshop
 
 ---
 
@@ -219,6 +217,10 @@ sqlCtx.table("people") \
    .agg("name", avg("age")) \
    .collect()
 ```
+
+^ In Spark, a DataFrame is a distributed collection of data organized into named columns. It is conceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations under the hood. DataFrames can be constructed from a wide array of sources such as: structured data files, tables in Hive, external databases, or existing RDDs.
+
+
 ---
 
 ![fit](images/dataframes-faster.png)
@@ -245,6 +247,19 @@ df.show()
 ## null Michael
 ```
 ^ The entry point into all functionality in Spark SQL is the SQLContext class, or one of its descendants. To create a basic SQLContext, all you need is a SparkContext.
+
+---
+# Supported Formats
+
+* JSON files
+* Parquet files
+* Hive tables
+* local file systems
+* distributed file systems (HDFS)
+* cloud storage (S3)
+* external relational database systems via JDBC
+
+^ Modern applications often need to collect and analyze data from a variety of sources. Out of the box, DataFrame supports reading data from the most popular formats, including (JSON files, Parquet files, Hive tables). It can read from local file systems, distributed file systems (HDFS), cloud storage (S3), and external relational database systems via JDBC. In addition, through Spark SQL’s external data sources API, DataFrames can be extended to support any third-party data formats or sources. Existing third-party extensions already include Avro, CSV, ElasticSearch, and Cassandra.
 
 ---
 ```python
