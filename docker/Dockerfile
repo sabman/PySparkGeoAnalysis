@@ -55,7 +55,7 @@ RUN conda install gdal -y
 
 # Get custom GEO libs
 RUN curl -k -o /usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar \
-      https://dl.dropboxusercontent.com/u/96303065/spark-workshop/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar
+      https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar
 
 RUN curl -k -o /usr/local/lib/jts-1.13.jar \
       http://central.maven.org/maven2/com/vividsolutions/jts/1.13/jts-1.13.jar
@@ -69,9 +69,9 @@ RUN ls -a && git clone https://github.com/sabman/PySparkGeoAnalysis.git . && pwd
 
 # Download the data
 RUN curl -o ./06_Europe_Cities_Boundries_with_Labels_Population.geo.json \
-      http://datax.academy/pydata-berlin-2016/06_Europe_Cities_Boundries_with_Labels_Population.geo.json && \
+      https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/06_Europe_Cities_Boundries_with_Labels_Population.geo.json && \
       mv 06_Europe_Cities_Boundries_with_Labels_Population.geo.json ./work-flow
 
 RUN curl -o ./pois.json \
-      http://datax.academy/pydata-berlin-2016/pois.json && \
+      https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/pois.json && \
       mv pois.json ./work-flow
