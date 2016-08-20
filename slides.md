@@ -7,14 +7,15 @@
 ^ Introduce myself
 
 ---
-# Agenda
+# Agenda (Total Time: 4 hours)
 
-* Quick Introduction to Docker / Setup machines
-* What is Apache Spark/PySpark
-* Spark DataFrames
-* Geo Ecosystem
-* Overview of our use cases
-* GeoPandas & Hands-on Workshop
+* Quick Introduction to Docker (30 min)
+* Setup machines (30 min)
+* What is Apache Spark/PySpark (20 min)
+* Spark DataFrames (20 min)
+* Geo Ecosystem (10 min)
+* Overview of our use cases (20 min)
+* GeoPandas & Hands-on Workshop (2 hours)
 
 ---
 

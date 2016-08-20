@@ -1,5 +1,14 @@
 # A Small Course on Big Data - GeoAnalysis using PySpark
 
+## Pull Image from Docker Hub
+
+```sh
+docker pull sabman/geo-with-pyspark
+```
+
+
+## Building docker image from scratch (DO NOT DO THIS)
+
 Clone the repository and use the provided `Dockerfile` to the buid image:
 
 ```

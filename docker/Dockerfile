@@ -36,12 +36,10 @@ RUN git clone https://github.com/sstephenson/bats.git && \
     cd bats && ./install.sh /usr/local && \
     cd .. && rm -rf  ./bats
 
-
 # Install / upgrade python libs
 RUN $CONDA_ACTIVATE && pip install overpy --upgrade
 RUN $CONDA_ACTIVATE && pip install retrying --upgrade
 RUN $CONDA_ACTIVATE && pip install geopandas --upgrade
-RUN pip install https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip --user
 
 # Geovislization libraries
 RUN $CONDA_ACTIVATE && pip install folium --upgrade
@@ -68,10 +66,15 @@ ENV SPARK_CLASSPATH="/usr/local/lib/jts-1.13.jar:/usr/local/lib/spatial-spark_2.
 RUN ls -a && git clone https://github.com/sabman/PySparkGeoAnalysis.git . && pwd && ls -la work-flow
 
 # Download the data
-RUN curl -o ./06_Europe_Cities_Boundries_with_Labels_Population.geo.json \
-      https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/06_Europe_Cities_Boundries_with_Labels_Population.geo.json && \
-      mv 06_Europe_Cities_Boundries_with_Labels_Population.geo.json ./work-flow
+RUN curl -o ./06_Europe_Cities_boundaries_with_Labels_Population.geo.json \
+      https://gist.githubusercontent.com/sabman/ee448ddfeba4746a165f89f9ab5f1841/raw/197fbfc017d1c7c1d517939cb0325fdb6dec77f2/06_Europe_Cities_Boundaries_with_Labels_Population.geo.json && \
+      mv 06_Europe_Cities_Boundaries_with_Labels_Population.geo.json ./work-flow
 
 RUN curl -o ./pois.json \
       https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/pois.json && \
       mv pois.json ./work-flow
+
+# FIXME: jupyter contrib command not found
+# RUN $CONDA_ACTIVATE && pip install https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tarball/master --user
+# RUN $CONDA_ACTIVATE && jupyter contrib nbextension install --user
+# RUN $CONDA_ACTIVATE && pip install jupyter_nbextensions_configurator --user

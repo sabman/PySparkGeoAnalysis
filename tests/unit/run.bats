@@ -6,7 +6,7 @@
 }
 
 @test "boundry data exists" {
-  run ls work-flow/06_Europe_Cities_Boundries_with_Labels_Population.geo.json  &>> test.log
+  run ls work-flow/06_Europe_Cities_Boundaries_with_Labels_Population.geo.json  &>> test.log
   [ "$status" -eq 0 ]
 }
 
