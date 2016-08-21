@@ -4,3 +4,4 @@ metastore_db/*
 .ipynb_checkpoints/
 derby.log
 scratch-space
+docker/docker-image-geo-pyspark.tar
