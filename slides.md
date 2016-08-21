@@ -24,7 +24,7 @@
 ---
 ## Wifi
 
-* Connect to
+* Connect to the wifi
 
 ## Windows and Mac Users: Install Docker Toolbox
 
