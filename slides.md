@@ -7,7 +7,7 @@
 ^ Introduce myself
 
 ---
-# Agenda (Total Time: 4 hours)
+# Agenda (Total Time: 3-3.5 hours)
 
 * Quick Introduction to Docker (30 min)
 * Setup machines (30 min)
@@ -479,7 +479,7 @@ Work with existing tools:
 
 ## Loading data
 
-```{python}
+```python
 >>> boros = GeoDataFrame.from_file('nybb.shp') # also has from_postgis()
 >>> boros.set_index('BoroCode', inplace=True)
 >>> boros.sort()
@@ -536,7 +536,7 @@ boros.buffer(0.5).plot()
 
 ![left fit](images/nyc_buffer-5280.png)
 
-```{python}
+```python
 boros.buffer(0.5).plot()
 ```
 
@@ -545,7 +545,7 @@ boros.buffer(0.5).plot()
 
 ![left fit](images/nyc_geojson.png)
 
-```{python}
+```python
 boros.to_json()
 ```
 
