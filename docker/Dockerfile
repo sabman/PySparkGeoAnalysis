@@ -53,7 +53,7 @@ RUN conda install gdal -y
 
 # Get custom GEO libs
 RUN curl -k -o /usr/local/lib/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar \
-      https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar
+      https://dl.dropboxusercontent.com/u/96303065/spark-workshop/spatial-spark_2.10-1.1.1-beta-SNAPSHOT.jar
 
 RUN curl -k -o /usr/local/lib/jts-1.13.jar \
       http://central.maven.org/maven2/com/vividsolutions/jts/1.13/jts-1.13.jar
@@ -66,12 +66,12 @@ ENV SPARK_CLASSPATH="/usr/local/lib/jts-1.13.jar:/usr/local/lib/spatial-spark_2.
 RUN ls -a && git clone https://github.com/sabman/PySparkGeoAnalysis.git . && pwd && ls -la work-flow
 
 # Download the data
-RUN curl -o ./06_Europe_Cities_boundaries_with_Labels_Population.geo.json \
-      https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/06_Europe_Cities_Boundaries_with_Labels_Population.geo.json && \
+RUN curl -o ./06_Europe_Cities_Boundaries_with_Labels_Population.geo.json \
+      https://dl.dropboxusercontent.com/u/96303065/spark-workshop/06_Europe_Cities_Boundaries_with_Labels_Population.geo.json && \
       mv 06_Europe_Cities_Boundaries_with_Labels_Population.geo.json ./work-flow
 
 RUN curl -o ./pois.json \
-      https://s3.eu-central-1.amazonaws.com/sabman-european-cities-analysis/pois.json && \
+      https://dl.dropboxusercontent.com/u/96303065/spark-workshop/pois.json && \
       mv pois.json ./work-flow
 
 # FIXME: jupyter contrib command not found
