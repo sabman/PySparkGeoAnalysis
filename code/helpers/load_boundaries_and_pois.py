@@ -1,6 +1,6 @@
 OVERPASS_API         = overpy.Overpass()
 BASE_DIR             = os.path.join(os.path.abspath('.'), 'work-flow')
-URBAN_BOUNDARIES_FILE = '06_Europe_Cities_boundaries_with_Labels_Population.geo.json'
+URBAN_BOUNDARIES_FILE = '06_Europe_Cities_Boundaries_with_Labels_Population.geo.json'
 
 # Paths to base datasets that we are using:
 URBAN_BOUNDARIES_PATH = os.path.join(BASE_DIR,URBAN_BOUNDARIES_FILE)
